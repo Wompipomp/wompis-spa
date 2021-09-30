@@ -16,6 +16,19 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    npm install yarn
+  displayName: 'yarn install'
+
+- script: |
+    yarn install
+    yarn build
+  displayName: 'yarn install and build'
+
+
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: 'dist'
+    azureSubscription: 'Nutzungsbasierte Bezahlung(4a20ab21-6f4f-4d46-923d-ad983d3ca854)'
+    Destination: 'AzureBlob'
+    storage: 'wompisspafunction'
+    ContainerName: 'web'
